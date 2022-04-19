@@ -12,13 +12,14 @@ lt_mm = int(launch_time[3:5])
 tt_hh = int(travel_time[0:2])
 tt_mm = int(travel_time[3:5])
 
-add_hh = lt_hh + tt_hh
-if add_hh >= 24:
-    add_hh -= 24
-add_mm = lt_mm + tt_mm
-if add_mm >= 60:
-    add_mm -= 60
-    add_hh += 1
+tt_total_mm = ( tt_hh * 60 ) + tt_mm
 
-attack_time = f'{add_hh} {add_mm}'
-print(attack_time)
+for x in range(1, tt_total_mm+1):
+    lt_mm += 1
+    if lt_mm > 59:
+        lt_mm = 0
+        lt_hh += 1
+        if lt_hh > 23:
+            lt_hh = 0
+print(f'{lt_hh:02d} {lt_mm:02d}')
+
